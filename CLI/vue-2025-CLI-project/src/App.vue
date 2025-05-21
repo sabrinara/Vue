@@ -1,25 +1,27 @@
 <script>
+import { ref } from "vue";
 export default {
-  data() {
-    return {
-      name: "sabrina sabrina",// optional api data() and interpolation
-      status: 'active',
-      tasks: ['task one', 'task two', 'task three', 'task four', 'task five'],
-      link: "https://google.com",
-      link2: "https://facebook.com",
+  setup() {
+    const name = ref( "sabrina sabrina");
+    const status = ref( 'active');
+    const tasks = ref( ['task one', 'task two', 'task three', 'task four', 'task five']);
+    const toggleStatus = () => {
+      if (status.value === 'active') {
+        status.value = 'pending';
+      } else if (status.value === 'pending') {
+        status.value = 'inactive';
+      } else {
+        status.value = 'active';
+      }
+    };
+
+    return{
+      name,
+      status,
+      tasks,
+      toggleStatus,
     };
   },
-  methods: {
-    toggleStatus() {
-      if (this.status === 'active') {
-        this.status = 'pending';
-      } else if (this.status === 'pending') {
-        this.status === 'inactive';
-      }else{
-        this.status === 'active';
-      }
-    }
-  }
 };
 </script>
 <template>
@@ -37,17 +39,11 @@ export default {
     <li v-for="task in tasks" key="task">{{ task }} </li>
   </ul>
 
-  <!-- v-bind  -->
-  <h1>USe of v-bind</h1>
-  <a v-bind:href="link"> click for google</a>
-  <br>
-  <!-- another way  -->
-  <a :href="link2"> click for facebook</a>
 
   <br>
   <h1>Use of V-on</h1>
   <!-- v-on directive, events & methods -->
-  <!-- <button v-on:click="toggleStatus"> Change Status</button> -->
-   <!-- another way -->
-  <button @click="toggleStatus"> Change Status</button>
+  <button v-on:click="toggleStatus"> Change Status</button>
+  <!-- another way -->
+  <!-- <button @click="toggleStatus"> Change Status</button> -->
 </template>
