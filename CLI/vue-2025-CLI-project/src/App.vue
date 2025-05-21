@@ -4,7 +4,9 @@ export default{
     return {
       name: "sabrina sabrina",// optional api data() and interpolation
       status: 'active',
-      tasks: ['task one','task two','task three','task four','task five']
+      tasks: ['task one','task two','task three','task four','task five'],
+      link:"https://google.com",
+      link2:"https://facebook.com",
     };
   },
 };
@@ -23,6 +25,12 @@ export default{
   <ul>
     <li v-for="task in tasks" key="task">{{ task }} </li>
   </ul>
+
+  <!-- v-bind  -->
+   <a v-bind:href="link"> click for google</a>
+   <br>
+   <!-- another way  -->
+     <a :href="link2"> click for facebook</a>
 </template>
 
 
