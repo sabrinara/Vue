@@ -1,6 +1,7 @@
-<script setup>
+<script>
 import { ref } from "vue";
-
+export default {
+  setup() {
     const name = ref( "sabrina sabrina");
     const status = ref( 'active');
     const tasks = ref( ['task one', 'task two', 'task three', 'task four', 'task five']);
@@ -14,6 +15,14 @@ import { ref } from "vue";
       }
     };
 
+    return{
+      name,
+      status,
+      tasks,
+      toggleStatus,
+    };
+  },
+};
 </script>
 <template>
   <h1>{{ name }}</h1><!-- interpolation -->
