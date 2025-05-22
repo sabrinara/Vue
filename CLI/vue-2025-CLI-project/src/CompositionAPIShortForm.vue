@@ -4,7 +4,6 @@ import { ref } from "vue";
     const name = ref( "sabrina sabrina");
     const status = ref( 'active');
     const tasks = ref( ['task one', 'task two', 'task three', 'task four', 'task five']);
-    const newTask=ref('');
     const toggleStatus = () => {
       if (status.value === 'active') {
         status.value = 'pending';
@@ -14,18 +13,6 @@ import { ref } from "vue";
         status.value = 'active';
       }
     };
-
-  const addTask= () =>{
-    if(newTask.value.trim() !== ''){
-      tasks.value.push(newTask.value);
-      newTask.value= '';
-    }
-  };
-
-
-  const deleteTask= (index) => {
-    tasks.value.splice(index, 1);
-  } 
 
 </script>
 <template>
@@ -37,25 +24,10 @@ import { ref } from "vue";
   <p v-else-if="status === 'pending'">User is pending</p>
   <p v-else>User is inactive</p>
 
-
-<!-- v-model form use of event.prevent  -->
-  <form @submit.prevent="addTask">
-    <label for="newTask">Add Task</label>
-    <input type="text" id="newTask" name="newTask" v-model="newTask">
-    <button type="submit">Submit</button>
-  </form>
- 
- 
- 
   <!-- loop v-for  -->
   <h1>Tasks:</h1>
   <ul>
-    <li v-for="(task,index) in tasks" :key="task">
-    <span>
-      {{ task }}
-    </span>  
-    <button @click="deleteTask(index)">X</button>
-    </li>
+    <li v-for="task in tasks" key="task">{{ task }} </li>
   </ul>
 
 
